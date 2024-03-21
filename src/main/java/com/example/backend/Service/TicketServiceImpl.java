@@ -12,10 +12,7 @@ import com.example.backend.mappers.TicketMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -65,7 +62,7 @@ public class TicketServiceImpl implements TicketService {
                         .build();
 
                 GymTicket savedGymTicket = ticketRepository.save(gymTicket);
-                return TicketMapper.mapGymTickewtToTicketDTo(savedGymTicket);
+                return TicketMapper.mapGymTicketToTicketDTo(savedGymTicket);
 
             }
         }
@@ -109,7 +106,7 @@ public class TicketServiceImpl implements TicketService {
                         .build();
 
                 GymTicket savedGymTicket = ticketRepository.save(gymTicket);
-                return TicketMapper.mapGymTickewtToTicketDTo(savedGymTicket);
+                return TicketMapper.mapGymTicketToTicketDTo(savedGymTicket);
             }
 
         }
@@ -124,7 +121,7 @@ public class TicketServiceImpl implements TicketService {
         if (optionalUser.isPresent()) {
             List<GymTicket> gymTicketList = ticketRepository.findAllByUser(optionalUser.get());
             if (gymTicketList.size() > 0) {
-                return gymTicketList.stream().map(TicketMapper::mapGymTickewtToTicketDTo).collect(Collectors.toList());
+                return gymTicketList.stream().map(TicketMapper::mapGymTicketToTicketDTo).collect(Collectors.toList());
             }
         }
         return null;
@@ -133,7 +130,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketDto getSingleTicket(Long ticketId) {
         Optional<GymTicket> optionalGymTicket = ticketRepository.findById(ticketId);
-        return optionalGymTicket.map(TicketMapper::mapGymTickewtToTicketDTo).orElse(null);
+        return optionalGymTicket.map(TicketMapper::mapGymTicketToTicketDTo).orElse(null);
     }
 
     @Override
@@ -184,7 +181,7 @@ public class TicketServiceImpl implements TicketService {
         if (optionalUser.isPresent()) {
             Optional<GymTicket> gymTicket = ticketRepository.findAllByUserAndIssuedAtBefore(optionalUser.get(), LocalDateTime.now()).stream().filter(gymTicket1 -> gymTicket1.getExpirationAt().isAfter(LocalDateTime.now())).findFirst();
             if (gymTicket.isPresent()) {
-                return TicketMapper.mapGymTickewtToTicketDTo(gymTicket.get());
+                return TicketMapper.mapGymTicketToTicketDTo(gymTicket.get());
             }
         }
         return null;

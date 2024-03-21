@@ -6,6 +6,7 @@ import com.example.backend.dto.LoginDto;
 import com.example.backend.dto.RegisterDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterDto registerDto){
-        return ResponseEntity.ok(authenticationService.register(registerDto));
+        return new ResponseEntity<>(authenticationService.register(registerDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

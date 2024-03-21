@@ -5,7 +5,7 @@ import com.example.backend.entity.GymTicket;
 
 public class TicketMapper {
 
-    public static TicketDto mapGymTickewtToTicketDTo(GymTicket gymTicket){
+    public static TicketDto mapGymTicketToTicketDTo(GymTicket gymTicket){
         return TicketDto.builder()
                 .id(gymTicket.getId())
                 .ticketType(gymTicket.getTicketType())
