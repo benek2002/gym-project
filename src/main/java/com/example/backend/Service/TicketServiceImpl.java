@@ -120,12 +120,15 @@ public class TicketServiceImpl implements TicketService {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             List<GymTicket> gymTicketList = ticketRepository.findAllByUser(optionalUser.get());
-            if (gymTicketList.size() > 0) {
+            if (!gymTicketList.isEmpty()) {
                 return gymTicketList.stream().map(TicketMapper::mapGymTicketToTicketDTo).collect(Collectors.toList());
+
             }
         }
         return null;
     }
+
+
 
     @Override
     public TicketDto getSingleTicket(Long ticketId) {

@@ -8,6 +8,10 @@ public class UserMapper {
     public static UserDto mapUserToUserDto(User user){
         return UserDto.builder()
                 .id(user.getId())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
                 .build();
     }
 }

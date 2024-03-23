@@ -3,19 +3,19 @@ package com.example.backend.entity;
 import com.example.backend.Utils.DayOfWeek;
 import com.example.backend.Utils.GroupName;
 import com.example.backend.Utils.GroupType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "training_groups")
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class TrainingGroup {
@@ -37,6 +37,18 @@ public class TrainingGroup {
     private GroupName groupName;
 
     @ManyToMany(mappedBy = "trainingGroups")
-    private Set<User> users;
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
 
+
+    public void addUserToGroup(User user){
+        users.add(user);
+        user.getTrainingGroups().add(this);
+
+    }
+
+    public void removeUserFromGroup(User user) {
+        users.remove(user);
+        user.getTrainingGroups().remove(this);
+    }
 }

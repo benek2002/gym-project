@@ -39,7 +39,8 @@ public class GymTicket {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    @OneToOne(mappedBy = "gymTicket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "gymTicket", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonIgnore
     private TicketSuspension suspension;
 
 

@@ -12,7 +12,6 @@ public class TrainingGroupMapper {
         return TrainingGroupDto.builder()
                         .id(trainingGroup.getId())
                 .description(trainingGroup.getDescription())
-                .userList(trainingGroup.getUsers().stream().map(UserMapper::mapUserToUserDto).collect(Collectors.toSet()))
                 .dayOfWeek(trainingGroup.getDayOfWeek())
                 .startAt(trainingGroup.getStartAt())
                 .endAt(trainingGroup.getEndAt())
@@ -23,4 +22,6 @@ public class TrainingGroupMapper {
 
 
     }
+
+
 }
