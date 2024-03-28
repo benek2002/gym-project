@@ -1,5 +1,6 @@
 package com.example.backend.Service;
 
+import com.example.backend.Exception.EntityNotFoundException;
 import com.example.backend.Repository.TrainingGroupRepository;
 import com.example.backend.Repository.UserRepository;
 import com.example.backend.dto.UserDto;
@@ -23,41 +24,39 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<UserDto> getAllUsers() {
         List<User> userList =  userRepository.findAll();
-        return userList.stream().map(UserMapper::mapUserToUserDto).collect(Collectors.toList());
+        return userList.stream().map(UserMapper::mapUserToUserDto).toList();
     }
 
     @Override
-    public String adduserToGroup(Long userId, Long groupId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        Optional<TrainingGroup> optionalTrainingGroup = trainingGroupRepository.findById(groupId);
-        if(userOptional.isPresent() && optionalTrainingGroup.isPresent()){
-            if(!optionalTrainingGroup.get().getUsers().contains(userOptional.get())){
-                optionalTrainingGroup.get().addUserToGroup(userOptional.get());
-                trainingGroupRepository.save(optionalTrainingGroup.get());
-                return "User successfully added to group";
+    public void adduserToGroup(Long userId, Long groupId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, userId));
+        TrainingGroup trainingGroup = trainingGroupRepository.findById(groupId).orElseThrow(() -> new EntityNotFoundException(TrainingGroup.class, groupId));
+
+            if(!trainingGroup.getUsers().contains(user)){
+                trainingGroup.addUserToGroup(user);
+                trainingGroupRepository.save(trainingGroup);
+
             }else{
-                return "User already belongs to this group";
+                throw new RuntimeException("User already belongs to this training group");
             }
 
-        }
-        return "User or group not found";
+
+
     }
 
     @Override
-    public String deleteUserFromGroup(Long userId, Long groupId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        Optional<TrainingGroup> optionalTrainingGroup = trainingGroupRepository.findById(groupId);
-        if(userOptional.isPresent() && optionalTrainingGroup.isPresent()){
-            if(optionalTrainingGroup.get().getUsers().contains(userOptional.get())){
-                optionalTrainingGroup.get().removeUserFromGroup(userOptional.get());
-                trainingGroupRepository.save(optionalTrainingGroup.get());
-                return "User successfully removed from group";
+    public void deleteUserFromGroup(Long userId, Long groupId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, userId));
+        TrainingGroup trainingGroup = trainingGroupRepository.findById(groupId).orElseThrow(() -> new EntityNotFoundException(TrainingGroup.class, groupId));
+
+            if(trainingGroup.getUsers().contains(user)) {
+                trainingGroup.removeUserFromGroup(user);
+                trainingGroupRepository.save(trainingGroup);
             }else{
-                return "User doesn't belong to this group";
+                throw new RuntimeException("User doesn't belong to this training group");
             }
 
-        }
-        return "User or group not found";
+
     }
 
 

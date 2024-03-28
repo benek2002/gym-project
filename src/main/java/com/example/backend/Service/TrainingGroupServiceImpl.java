@@ -1,5 +1,6 @@
 package com.example.backend.Service;
 
+import com.example.backend.Exception.EntityNotFoundException;
 import com.example.backend.Repository.TrainingGroupRepository;
 import com.example.backend.Repository.UserRepository;
 import com.example.backend.Utils.GroupType;
@@ -43,24 +44,22 @@ public class TrainingGroupServiceImpl implements TrainingGroupService {
 
     @Override
     public List<TrainingGroupDto> getAllTrainingGroups() {
-        return trainingGroupRepository.findAll().stream().map(TrainingGroupMapper::mapTrainingGroupToTrainingGroupDto).collect(Collectors.toList());
+        return trainingGroupRepository.findAll().stream().map(TrainingGroupMapper::mapTrainingGroupToTrainingGroupDto).toList();
     }
 
     @Override
     public TrainingGroupDto getSignleGroup(Long groupId) {
-        Optional<TrainingGroup> optionalTrainingGroup =  trainingGroupRepository.findById(groupId);
-        if(optionalTrainingGroup.isPresent()){
-            TrainingGroupDto trainingGroupDto = TrainingGroupMapper.mapTrainingGroupToTrainingGroupDto(optionalTrainingGroup.get());
+            TrainingGroup trainingGroup =  trainingGroupRepository.findById(groupId).orElseThrow(() -> new EntityNotFoundException(TrainingGroup.class, groupId));
+
+            TrainingGroupDto trainingGroupDto = TrainingGroupMapper.mapTrainingGroupToTrainingGroupDto(trainingGroup);
             Set<UserDto> userDtoList = userRepository.findUsersByTrainingGroupId(trainingGroupDto.getId()).stream().map(UserMapper::mapUserToUserDto).collect(Collectors.toSet());
             trainingGroupDto.setUsers(userDtoList);
             return trainingGroupDto;
 
-        }
-        return null;
     }
 
     @Override
     public List<TrainingGroupDto> getTrainingGroupsByGroupType(GroupType groupType) {
-        return trainingGroupRepository.findAllByGroupType(groupType).stream().map(TrainingGroupMapper::mapTrainingGroupToTrainingGroupDto).collect(Collectors.toList());
+        return trainingGroupRepository.findAllByGroupType(groupType).stream().map(TrainingGroupMapper::mapTrainingGroupToTrainingGroupDto).toList();
     }
 }

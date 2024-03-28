@@ -29,30 +29,19 @@ public class TrainingGroupsController {
     @GetMapping
     public ResponseEntity<List<TrainingGroupDto>> getAllTrainingGroups(){
         List<TrainingGroupDto> trainingGroupDtoList = trainingGroupService.getAllTrainingGroups();
-        if(!trainingGroupDtoList.isEmpty()){
-            return new ResponseEntity<>(trainingGroupDtoList, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(trainingGroupDtoList, HttpStatus.BAD_REQUEST);
-        }
+        return ResponseEntity.ok(trainingGroupDtoList);
     }
 
     @GetMapping("/{groupId}")
     public ResponseEntity<TrainingGroupDto> getSingleTrainingGroup(@PathVariable Long groupId){
         TrainingGroupDto trainingGroupDto = trainingGroupService.getSignleGroup(groupId);
-        if(trainingGroupDto!=null){
-            return new ResponseEntity<>(trainingGroupDto, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(trainingGroupDto, HttpStatus.BAD_REQUEST);
+        return ResponseEntity.ok(trainingGroupDto);
     }
 
     @GetMapping("/groupType/{groupType}")
-    public ResponseEntity<List<TrainingGroupDto>> getTrainingGroupsByGroupType(@PathVariable GroupType groupType){
+    public ResponseEntity<List<TrainingGroupDto>> getTrainingGroupsByGroupType(@PathVariable GroupType groupType) {
         List<TrainingGroupDto> trainingGroupDtoList = trainingGroupService.getTrainingGroupsByGroupType(groupType);
-        if(!trainingGroupDtoList.isEmpty()){
-            return new ResponseEntity<>(trainingGroupDtoList, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(trainingGroupDtoList, HttpStatus.BAD_REQUEST);
+        return ResponseEntity.ok(trainingGroupDtoList);
+
     }
-
-
 }

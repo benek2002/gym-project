@@ -9,7 +9,7 @@ public interface UserService {
 
     List<UserDto> getAllUsers();
 
-    String adduserToGroup(Long userId, Long groupId);
+    void adduserToGroup(Long userId, Long groupId);
 
-    String deleteUserFromGroup(Long userId, Long groupId);
+    void deleteUserFromGroup(Long userId, Long groupId);
 }

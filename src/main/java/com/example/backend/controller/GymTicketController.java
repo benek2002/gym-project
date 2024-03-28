@@ -42,19 +42,16 @@ public class GymTicketController {
     @GetMapping("/all/{userId}")
     public ResponseEntity<List<TicketDto>> getAllUserTickets(@PathVariable Long userId){
         List<TicketDto> ticketDtoList = ticketService.getAllUserTickets(userId);
-        if(ticketDtoList.size()>0){
-            return ResponseEntity.ok().body(ticketDtoList);
+        if(!ticketDtoList.isEmpty()){
+            return ResponseEntity.ok(ticketDtoList);
         }
-        return ResponseEntity.badRequest().body(ticketDtoList);
+        return ResponseEntity.ok(ticketDtoList);
     }
 
     @GetMapping("/{ticketId}")
-    public ResponseEntity<TicketDto> getSingleTicket(@PathVariable Long ticketId){
+    public ResponseEntity<TicketDto> getSingleTicket(@PathVariable Long ticketId) {
         TicketDto ticketDto = ticketService.getSingleTicket(ticketId);
-        if(ticketDto!=null){
-            return ResponseEntity.ok().body(ticketDto);
-        }
-        return ResponseEntity.badRequest().body(ticketDto);
+        return ResponseEntity.ok(ticketDto);
     }
 
     @PostMapping("/user/hangTicket/{userId}")
@@ -66,7 +63,7 @@ public class GymTicketController {
     @GetMapping("/current/{userId}")
     public ResponseEntity<TicketDto> getCurrentUserTicket(@PathVariable Long userId){
         TicketDto ticketDto = ticketService.getCurrentUserTicket(userId);
-        return ResponseEntity.ok().body(ticketDto);
+        return ResponseEntity.ok(ticketDto);
     }
 
 
