@@ -21,4 +21,20 @@ public class HandlerException {
     public String TicketPurchaseNotValidHandler(TicketPurchaseNotValidException ex){
         return ex.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler(HangTicketException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String HangTicketNotValidHandler(HangTicketException ex) {
+        return ex.getMessage();
+
+    }
+
+    @ResponseBody
+    @ExceptionHandler(BackendException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String HangTicketNotValidHandler(BackendException ex) {
+        return ex.getMessage();
+
+    }
 }

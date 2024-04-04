@@ -9,7 +9,7 @@ public interface UserService {
 
     List<UserDto> getAllUsers();
 
-    void adduserToGroup(Long userId, Long groupId);
+    void addUserToGroup(Long userId, Long groupId);
 
     void deleteUserFromGroup(Long userId, Long groupId);
 }

@@ -16,7 +16,7 @@ public interface TicketService {
 
     TicketDto getSingleTicket(Long ticketId);
 
-    String hangYourTicket(Long userId);
+    void hangYourTicket(Long userId);
 
     TicketDto getCurrentUserTicket(Long userId);
 

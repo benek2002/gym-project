@@ -1,5 +1,6 @@
 package com.example.backend.Service;
 
+import com.example.backend.Exception.BackendException;
 import com.example.backend.Exception.EntityNotFoundException;
 import com.example.backend.Repository.TrainingGroupRepository;
 import com.example.backend.Repository.UserRepository;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void adduserToGroup(Long userId, Long groupId) {
+    public void addUserToGroup(Long userId, Long groupId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, userId));
         TrainingGroup trainingGroup = trainingGroupRepository.findById(groupId).orElseThrow(() -> new EntityNotFoundException(TrainingGroup.class, groupId));
 
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService{
                 trainingGroupRepository.save(trainingGroup);
 
             }else{
-                throw new RuntimeException("User already belongs to this training group");
+                throw new BackendException("User already belongs to this training group");
             }
 
 
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService{
                 trainingGroup.removeUserFromGroup(user);
                 trainingGroupRepository.save(trainingGroup);
             }else{
-                throw new RuntimeException("User doesn't belong to this training group");
+                throw new BackendException("User doesn't belong to this training group");
             }
 
 

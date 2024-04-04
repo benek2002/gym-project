@@ -144,7 +144,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public String hangYourTicket(Long userId) {
+    public void hangYourTicket(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, userId));
 
         LocalDateTime now = LocalDateTime.now();
@@ -163,7 +163,7 @@ public class TicketServiceImpl implements TicketService {
             ticketSuspensionRepository.save(ticketSuspension);
             optionalPresentGymTicket.get().setSuspension(ticketSuspension);
             ticketRepository.save(optionalPresentGymTicket.get());
-            return "Your ticket has been successfully suspended for a week";
+
         }
         throw new HangTicketException("You have another ticket in this time period");
 

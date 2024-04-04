@@ -22,9 +22,6 @@ public class GymTicketController {
     public ResponseEntity<TicketDto> buyTicket(@PathVariable Long userId, @RequestParam TicketType ticketType){
 
             TicketDto ticketDto = ticketService.addTicket(userId, ticketType);
-            if(ticketDto == null){
-                return ResponseEntity.badRequest().body(ticketDto);
-            }
             return ResponseEntity.ok().body(ticketDto);
 
     }
@@ -32,9 +29,6 @@ public class GymTicketController {
     @PostMapping("/buyTicketInAdvance/{userId}")  // The date must be provide with time for example: date=2024-06-19T14:30:00
     public ResponseEntity<TicketDto> buyTicketInAdvance(@PathVariable Long userId, @RequestParam TicketType ticketType, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime){
         TicketDto ticketDto = ticketService.addTicket(userId, ticketType, dateTime);
-        if(ticketDto == null){
-            return ResponseEntity.badRequest().body(ticketDto);
-        }
         return ResponseEntity.ok().body(ticketDto);
 
     }
@@ -42,9 +36,6 @@ public class GymTicketController {
     @GetMapping("/all/{userId}")
     public ResponseEntity<List<TicketDto>> getAllUserTickets(@PathVariable Long userId){
         List<TicketDto> ticketDtoList = ticketService.getAllUserTickets(userId);
-        if(!ticketDtoList.isEmpty()){
-            return ResponseEntity.ok(ticketDtoList);
-        }
         return ResponseEntity.ok(ticketDtoList);
     }
 
@@ -56,8 +47,8 @@ public class GymTicketController {
 
     @PostMapping("/user/hangTicket/{userId}")
     public ResponseEntity<String> hangYourTicket(@PathVariable Long userId){
-        String result = ticketService.hangYourTicket(userId);
-        return ResponseEntity.ok().body(result);
+        ticketService.hangYourTicket(userId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/current/{userId}")
