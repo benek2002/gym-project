@@ -4,7 +4,7 @@
 * user registration,
 * user login,
 * purchase of a subscription,
-* extension of the current subscription,
+* suspension of the current subscription,
 * purchase of a subscription in the future,
 * suspension of the subscription for a week,
 * adding a training group,
