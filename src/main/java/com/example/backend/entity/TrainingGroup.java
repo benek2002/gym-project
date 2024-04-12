@@ -28,9 +28,9 @@ public class TrainingGroup {
     @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfWeek;
 
-    private LocalTime startAt;
+    private LocalDateTime startAt;
 
-    private LocalTime endAt;
+    private LocalDateTime endAt;
     @Enumerated(EnumType.STRING)
     private GroupType groupType;
     @Enumerated(EnumType.STRING)

@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {UserController.class})
 @WebMvcTest
 @WithMockUser
-class UserControllerTest {
+class UserControllerSliceTest {
 
     @Autowired
     private MockMvc mockMvc;

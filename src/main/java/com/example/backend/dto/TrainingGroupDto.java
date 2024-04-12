@@ -35,10 +35,10 @@ public class TrainingGroupDto {
     private DayOfWeek dayOfWeek;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalTime startAt;
+    private LocalDateTime startAt;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalTime endAt;
+    private LocalDateTime endAt;
 
     private Set<UserDto> users;
 

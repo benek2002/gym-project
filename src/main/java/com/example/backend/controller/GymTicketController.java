@@ -45,7 +45,7 @@ public class GymTicketController {
         return ResponseEntity.ok(ticketDto);
     }
 
-    @PostMapping("/user/hangTicket/{userId}")
+    @PutMapping("/user/hangTicket/{userId}")
     public ResponseEntity<String> hangYourTicket(@PathVariable Long userId){
         ticketService.hangYourTicket(userId);
         return ResponseEntity.ok().build();
