@@ -10,7 +10,7 @@ public interface TrainingGroupService {
 
     List<TrainingGroupDto> getAllTrainingGroups();
 
-    TrainingGroupDto getSignleGroup(Long groupId);
+    TrainingGroupDto getSingleGroup(Long groupId);
 
     List<TrainingGroupDto> getTrainingGroupsByGroupType(GroupType groupType);
 }

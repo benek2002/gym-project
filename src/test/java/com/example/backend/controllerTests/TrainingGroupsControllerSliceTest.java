@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.example.backend.Utils.GroupType.MARTIAL_ARTS;
@@ -51,22 +50,16 @@ class TrainingGroupsControllerSliceTest {
 
     @Test
     public void shouldAddTrainingGroup() throws Exception {
-        LocalDateTime startAt = LocalDateTime.now();
-        LocalDateTime endAt = startAt.plusHours(1);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_TIME;
-
-
-        LocalDateTime parsedStartAt = LocalTime.parse(startAt.toLocalTime().format(formatter), formatter).atDate(startAt.toLocalDate());
-        LocalDateTime parsedEndAt = LocalTime.parse(endAt.toLocalTime().format(formatter), formatter).atDate(endAt.toLocalDate());
+        LocalTime startAt = LocalTime.of(15, 30);
+        LocalTime endAt = LocalTime.of(17,0);
 
         TrainingGroupDto trainingGroupDto = TrainingGroupDto.builder()
                 .groupName(GroupName.BOXING)
                 .groupType(MARTIAL_ARTS)
                 .description("Test Description")
                 .dayOfWeek(DayOfWeek.MONDAY)
-                .startAt(parsedStartAt)
-                .endAt(parsedEndAt)
+                .startAt(startAt)
+                .endAt(endAt)
                 .build();
         TrainingGroupDto trainingGroupDtoFromService = TrainingGroupDto.builder()
                 .id(0L)
@@ -105,7 +98,7 @@ class TrainingGroupsControllerSliceTest {
         TrainingGroupDto trainingGroupDto = TrainingGroupDto.builder()
                 .id(0L)
                 .build();
-        when(trainingGroupService.getSignleGroup(groupId)).thenReturn(trainingGroupDto);
+        when(trainingGroupService.getSingleGroup(groupId)).thenReturn(trainingGroupDto);
         mockMvc.perform(get("/training-group/{groupId}", groupId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(groupId));

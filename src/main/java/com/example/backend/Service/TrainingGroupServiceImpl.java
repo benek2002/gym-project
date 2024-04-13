@@ -48,7 +48,7 @@ public class TrainingGroupServiceImpl implements TrainingGroupService {
     }
 
     @Override
-    public TrainingGroupDto getSignleGroup(Long groupId) {
+    public TrainingGroupDto getSingleGroup(Long groupId) {
             TrainingGroup trainingGroup =  trainingGroupRepository.findById(groupId).orElseThrow(() -> new EntityNotFoundException(TrainingGroup.class, groupId));
 
             TrainingGroupDto trainingGroupDto = TrainingGroupMapper.mapTrainingGroupToTrainingGroupDto(trainingGroup);

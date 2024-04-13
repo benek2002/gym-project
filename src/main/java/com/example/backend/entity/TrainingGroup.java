@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -28,9 +29,9 @@ public class TrainingGroup {
     @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfWeek;
 
-    private LocalDateTime startAt;
+    private LocalTime startAt;
 
-    private LocalDateTime endAt;
+    private LocalTime endAt;
     @Enumerated(EnumType.STRING)
     private GroupType groupType;
     @Enumerated(EnumType.STRING)

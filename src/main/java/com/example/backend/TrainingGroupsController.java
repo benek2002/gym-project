@@ -3,10 +3,8 @@ package com.example.backend;
 import com.example.backend.Service.TrainingGroupService;
 import com.example.backend.Utils.GroupType;
 import com.example.backend.dto.TrainingGroupDto;
-import com.example.backend.entity.TrainingGroup;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +32,7 @@ public class TrainingGroupsController {
 
     @GetMapping("/{groupId}")
     public ResponseEntity<TrainingGroupDto> getSingleTrainingGroup(@PathVariable Long groupId){
-        TrainingGroupDto trainingGroupDto = trainingGroupService.getSignleGroup(groupId);
+        TrainingGroupDto trainingGroupDto = trainingGroupService.getSingleGroup(groupId);
         return ResponseEntity.ok(trainingGroupDto);
     }
 
