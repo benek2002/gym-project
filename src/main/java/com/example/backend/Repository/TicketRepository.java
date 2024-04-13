@@ -13,9 +13,6 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface TicketRepository extends JpaRepository<GymTicket, Long> {
-    List<GymTicket> findByExpirationAtBefore(LocalDateTime now);
-
-    Optional<GymTicket> findByUser(User user);
 
     List<GymTicket> findAllByUser(User user);
 

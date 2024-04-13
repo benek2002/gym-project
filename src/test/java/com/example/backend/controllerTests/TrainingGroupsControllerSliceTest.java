@@ -44,9 +44,6 @@ class TrainingGroupsControllerSliceTest {
 
     @MockBean
     private TrainingGroupService trainingGroupService;
-    private final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDateTime.class, new LocalDateTypeAdapter())
-            .create();
 
     @Test
     public void shouldAddTrainingGroup() throws Exception {

@@ -1,4 +1,4 @@
-package com.example.backend.controllerTests.serviceTests;
+package com.example.backend.serviceTests;
 
 import com.example.backend.Repository.UserRepository;
 import com.example.backend.Service.AuthenticationService;

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface TicketSuspensionRepository extends JpaRepository<TicketSuspension, Long> {
 
-    List<TicketSuspension> findAllByExpiredAtBefore(LocalDateTime now);
+
 
 
 }
