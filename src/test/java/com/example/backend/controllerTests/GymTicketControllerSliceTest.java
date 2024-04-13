@@ -1,5 +1,6 @@
-package com.example.backend.controller;
+package com.example.backend.controllerTests;
 
+import com.example.backend.GymTicketController;
 import com.example.backend.Service.TicketService;
 import com.example.backend.Utils.TicketType;
 import com.example.backend.dto.TicketDto;
@@ -12,10 +13,13 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.time.LocalDateTime;
 import java.util.List;
+
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;

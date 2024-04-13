@@ -1,5 +1,6 @@
-package com.example.backend.controller;
+package com.example.backend.controllerTests;
 
+import com.example.backend.AuthenticationController;
 import com.example.backend.Service.AuthenticationService;
 import com.example.backend.dto.AuthenticationResponse;
 import com.example.backend.dto.LoginDto;

@@ -1,7 +1,8 @@
-package com.example.backend.controller;
+package com.example.backend.controllerTests;
 
 import com.example.Utils.LocalDateTypeAdapter.LocalDateTypeAdapter;
 import com.example.backend.Service.TrainingGroupService;
+import com.example.backend.TrainingGroupsController;
 import com.example.backend.Utils.DayOfWeek;
 import com.example.backend.Utils.GroupName;
 import com.example.backend.dto.TrainingGroupDto;
@@ -16,17 +17,20 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import static com.example.backend.Utils.GroupType.MARTIAL_ARTS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration(classes = {TrainingGroupsController.class})
 @WebMvcTest

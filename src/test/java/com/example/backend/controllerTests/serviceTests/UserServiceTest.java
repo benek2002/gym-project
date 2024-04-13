@@ -1,21 +1,17 @@
-package com.example.service;
+package com.example.backend.controllerTests.serviceTests;
 
 import com.example.backend.Exception.BackendException;
 import com.example.backend.Exception.EntityNotFoundException;
 import com.example.backend.Repository.TrainingGroupRepository;
 import com.example.backend.Repository.UserRepository;
-import com.example.backend.Service.UserService;
 import com.example.backend.Service.UserServiceImpl;
-import com.example.backend.Utils.Role;
 import com.example.backend.dto.UserDto;
 import com.example.backend.entity.TrainingGroup;
 import com.example.backend.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashSet;

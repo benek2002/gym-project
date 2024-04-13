@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.backend.controllerTests.serviceTests;
 
 import com.example.backend.Exception.EntityNotFoundException;
 import com.example.backend.Exception.HangTicketException;
@@ -20,9 +20,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 

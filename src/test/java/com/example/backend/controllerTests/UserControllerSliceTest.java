@@ -1,6 +1,7 @@
-package com.example.backend.controller;
+package com.example.backend.controllerTests;
 
 import com.example.backend.Service.UserService;
+import com.example.backend.UserController;
 import com.example.backend.Utils.Role;
 import com.example.backend.dto.UserDto;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.util.List;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
