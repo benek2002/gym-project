@@ -148,24 +148,22 @@ public class TicketServiceImpl implements TicketService {
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, userId));
 
         LocalDateTime now = LocalDateTime.now();
-        Optional<GymTicket> optionalPresentGymTicket = ticketRepository.findAllByUserAndIssuedAtBefore(user, now).stream().filter(gymTicket -> gymTicket.getExpirationAt().isAfter(now)).findFirst();
-        if (optionalPresentGymTicket.isEmpty()) {
-            throw new HangTicketException("You don't have currently ticket");
-        }
-        List<GymTicket> futureTickets = ticketRepository.findAllByUserAndIssuedAtAfter(user, optionalPresentGymTicket.get().getExpirationAt());
-        if (futureTickets.isEmpty() || futureTickets.stream().noneMatch(gymTicket -> gymTicket.getIssuedAt().isBefore(optionalPresentGymTicket.get().getExpirationAt().plusWeeks(1)))) {
-            optionalPresentGymTicket.get().setExpirationAt(optionalPresentGymTicket.get().getExpirationAt().plusWeeks(1));
+        GymTicket presentGymTicket = ticketRepository.findAllByUserAndIssuedAtBefore(user, now).stream().filter(gymTicket -> gymTicket.getExpirationAt().isAfter(now)).findFirst().orElseThrow(() -> new HangTicketException("You don't have currently ticket"));
+        List<GymTicket> futureTickets = ticketRepository.findAllByUserAndIssuedAtAfter(user, presentGymTicket.getExpirationAt());
+        if (futureTickets.isEmpty() || futureTickets.stream().noneMatch(gymTicket -> gymTicket.getIssuedAt().isBefore(presentGymTicket.getExpirationAt().plusWeeks(1)))) {
+            presentGymTicket.setExpirationAt(presentGymTicket.getExpirationAt().plusWeeks(1));
             TicketSuspension ticketSuspension = TicketSuspension.builder()
                     .issuedAt(now)
                     .expiredAt(now.plusMinutes(1))
-                    .gymTicket(optionalPresentGymTicket.get())
+                    .gymTicket(presentGymTicket)
                     .build();
             ticketSuspensionRepository.save(ticketSuspension);
-            optionalPresentGymTicket.get().setSuspension(ticketSuspension);
-            ticketRepository.save(optionalPresentGymTicket.get());
+            presentGymTicket.setSuspension(ticketSuspension);
+            ticketRepository.save(presentGymTicket);
 
+        }else {
+            throw new HangTicketException("You have another ticket in this time period");
         }
-        throw new HangTicketException("You have another ticket in this time period");
 
     }
 
