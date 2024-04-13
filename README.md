@@ -23,6 +23,6 @@
 * H2 database
 * mySQL
 * lombok
-  
+* JUnit
 I'm currently in the process of developing this project and adding tests.
 
