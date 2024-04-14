@@ -1,17 +1,14 @@
-package com.example.backend;
+package com.example.backend.controller;
 
 import com.example.backend.Service.AuthenticationService;
 import com.example.backend.dto.AuthenticationResponse;
 import com.example.backend.dto.LoginDto;
 import com.example.backend.dto.RegisterDto;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +24,10 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDto loginDto){
         return ResponseEntity.ok(authenticationService.login(loginDto));
+    }
+    @GetMapping("/secured")
+    public ResponseEntity<String> testOfSecurity(){
+        return ResponseEntity.ok("Test of security");
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.controller;
 
 import com.example.backend.Service.TrainingGroupService;
 import com.example.backend.Utils.GroupType;

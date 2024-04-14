@@ -1,8 +1,8 @@
 package com.example.backend.controllerTests;
 
 import com.example.backend.Service.UserService;
-import com.example.backend.UserController;
 import com.example.backend.Utils.Role;
+import com.example.backend.controller.UserController;
 import com.example.backend.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

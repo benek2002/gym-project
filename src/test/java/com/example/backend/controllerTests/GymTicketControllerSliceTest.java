@@ -1,8 +1,8 @@
 package com.example.backend.controllerTests;
 
-import com.example.backend.GymTicketController;
 import com.example.backend.Service.TicketService;
 import com.example.backend.Utils.TicketType;
+import com.example.backend.controller.GymTicketController;
 import com.example.backend.dto.TicketDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

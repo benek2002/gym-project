@@ -1,12 +1,20 @@
 package com.example.backend.RepositoryTests;
 
 import com.example.backend.Repository.TicketRepository;
+import com.example.backend.controller.TrainingGroupsController;
 import com.example.backend.entity.GymTicket;
 import com.example.backend.entity.User;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -22,7 +30,6 @@ public class TicketRepositoryTest {
 
     @Autowired
     private TicketRepository ticketRepository;
-
     @Test
     @Transactional
     public void testFindAllByUser(){

@@ -1,14 +1,11 @@
 package com.example.backend.controllerTests;
 
-import com.example.Utils.LocalDateTypeAdapter.LocalDateTypeAdapter;
 import com.example.backend.Service.TrainingGroupService;
-import com.example.backend.TrainingGroupsController;
 import com.example.backend.Utils.DayOfWeek;
 import com.example.backend.Utils.GroupName;
+import com.example.backend.controller.TrainingGroupsController;
 import com.example.backend.dto.TrainingGroupDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,7 +15,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 

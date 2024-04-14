@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.controller;
 
 import com.example.backend.Service.TicketService;
 import com.example.backend.Utils.TicketType;
